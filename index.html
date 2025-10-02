@@ -5,19 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Projects Website</title>
   <style>
+    :root {
+      --bg-color: #f9f9f9;
+      --text-color: #333;
+      --header-bg: #222;
+      --header-text: #fff;
+      --card-bg: #fff;
+      --footer-bg: #222;
+      --footer-text: #fff;
+    }
+
+    body.dark {
+      --bg-color: #121212;
+      --text-color: #eee;
+      --header-bg: #1e1e1e;
+      --header-text: #f1f1f1;
+      --card-bg: #1c1c1c;
+      --footer-bg: #1e1e1e;
+      --footer-text: #f1f1f1;
+    }
+
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
       line-height: 1.6;
-      background: #f9f9f9;
-      color: #333;
+      background: var(--bg-color);
+      color: var(--text-color);
       scroll-behavior: smooth;
+      transition: background 0.3s, color 0.3s;
     }
 
     header {
-      background: #222;
-      color: #fff;
+      background: var(--header-bg);
+      color: var(--header-text);
       padding: 1rem;
       text-align: center;
       position: sticky;
@@ -34,13 +55,28 @@
     }
 
     nav a {
-      color: #fff;
+      color: var(--header-text);
       margin: 0 1rem;
       text-decoration: none;
     }
 
     nav a:hover {
       text-decoration: underline;
+    }
+
+    #theme-toggle {
+      background: none;
+      border: 1px solid var(--header-text);
+      color: var(--header-text);
+      margin-left: 1rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #theme-toggle:hover {
+      background: var(--header-text);
+      color: var(--header-bg);
     }
 
     section {
@@ -50,11 +86,12 @@
     }
 
     .projects article {
-      background: #fff;
+      background: var(--card-bg);
       padding: 1rem;
       margin-bottom: 1rem;
       border-radius: 8px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: background 0.3s, color 0.3s;
     }
 
     form {
@@ -72,14 +109,16 @@
       padding: 0.5rem;
       border: 1px solid #ccc;
       border-radius: 5px;
+      background: var(--card-bg);
+      color: var(--text-color);
     }
 
     form button {
       margin-top: 1rem;
       padding: 0.7rem;
       border: none;
-      background: #222;
-      color: #fff;
+      background: var(--header-bg);
+      color: var(--header-text);
       cursor: pointer;
       border-radius: 5px;
     }
@@ -91,8 +130,8 @@
     footer {
       text-align: center;
       padding: 1rem;
-      background: #222;
-      color: #fff;
+      background: var(--footer-bg);
+      color: var(--footer-text);
       margin-top: 2rem;
     }
   </style>
@@ -104,6 +143,7 @@
       <a href="#home">Home</a>
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
+      <button id="theme-toggle">🌙</button>
     </nav>
   </header>
 
@@ -152,7 +192,29 @@
   </section>
 
   <footer>
-    <p>&copy; 2025 My Projects Website</p>
+    <p>&copy; 2025 Coltonsr77</p>
   </footer>
+
+  <script>
+    const toggleBtn = document.getElementById("theme-toggle");
+    const body = document.body;
+
+    // Check saved preference
+    if(localStorage.getItem("theme") === "dark") {
+      body.classList.add("dark");
+      toggleBtn.textContent = "☀️";
+    }
+
+    toggleBtn.addEventListener("click", () => {
+      body.classList.toggle("dark");
+      if(body.classList.contains("dark")) {
+        localStorage.setItem("theme", "dark");
+        toggleBtn.textContent = "☀️";
+      } else {
+        localStorage.setItem("theme", "light");
+        toggleBtn.textContent = "🌙";
+      }
+    });
+  </script>
 </body>
 </html>
