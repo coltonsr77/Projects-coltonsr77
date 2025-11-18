@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Windows Home Server 2011 R2 – Download</title>
+  <style>
+    :root {
+      --bg: #f9f9f9;
+      --text: #222;
+      --card: #fff;
+      --header: #1f1f1f;
+      --header-text: #fff;
+    }
+
+    body.dark {
+      --bg: #121212;
+      --text: #eee;
+      --card: #1c1c1c;
+      --header: #000;
+      --header-text: #eee;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: 0.3s;
+    }
+
+    header {
+      background: var(--header);
+      padding: 1.2rem;
+      text-align: center;
+      color: var(--header-text);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    #theme-toggle {
+      margin-top: 10px;
+      padding: 6px 14px;
+      border: 1px solid var(--header-text);
+      background: none;
+      color: var(--header-text);
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    main {
+      max-width: 900px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    .card {
+      background: var(--card);
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.12);
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.3rem;
+      background: var(--header);
+      color: var(--header-text);
+      text-decoration: none;
+      border-radius: 7px;
+      font-size: 1.1rem;
+      margin-top: 1rem;
+    }
+
+    .btn:hover {
+      opacity: 0.8;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background: var(--header);
+      color: var(--header-text);
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Windows Home Server 2011 R2</h1>
+    <p>Your custom upgraded version of WHS 2011</p>
+    <button id="theme-toggle">🌙</button>
+  </header>
+
+  <main>
+
+    <section class="card">
+      <h2>About This Project</h2>
+      <p>
+        Windows Home Server 2011 R2 is my personal upgraded and modernized version of WHS 2011.  
+        It includes updated features, performance improvements, patched components, and better hardware support.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Download</h2>
+      <p>Click below to download the ISO installer for Windows Home Server 2011 R2.</p>
+
+      <!-- CHANGE THIS TO YOUR REAL DOWNLOAD LINK -->
+      <a href="YOUR-DOWNLOAD-LINK-HERE.iso" class="btn">⬇ Download WHS 2011 R2</a>
+
+      <p style="margin-top:1rem; font-size:0.9rem; opacity:0.8;">
+        File type: ISO • Version: R2 • Architecture: x64
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>System Requirements</h2>
+      <ul>
+        <li>2 GHz Dual-Core CPU or higher</li>
+        <li>2 GB RAM (4 GB Recommended)</li>
+        <li>80 GB Minimum HDD/SSD</li>
+        <li>Bootable USB or DVD</li>
+        <li>64-bit compatible hardware</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Screenshots (Optional)</h2>
+      <p>Add images here later if you want.</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2025 WHS 2011 R2 – Custom Build</p>
+  </footer>
+
+  <script>
+    const toggleBtn = document.getElementById("theme-toggle");
+    const body = document.body;
+
+    if(localStorage.getItem("theme") === "dark") {
+      body.classList.add("dark");
+      toggleBtn.textContent = "☀️";
+    }
+
+    toggleBtn.addEventListener("click", () => {
+      body.classList.toggle("dark");
+      if(body.classList.contains("dark")) {
+        localStorage.setItem("theme", "dark");
+        toggleBtn.textContent = "☀️";
+      } else {
+        localStorage.setItem("theme", "light");
+        toggleBtn.textContent = "🌙";
+      }
+    });
+  </script>
+
+</body>
+</html>
