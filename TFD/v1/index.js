@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (distance <= 0) {
       clearInterval(timer);
-      datetime.textContent = "...";
+      datetime.textContent = "This website will not be updated.";
     } else {
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
