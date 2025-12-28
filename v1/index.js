@@ -7,47 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 
-const sampleBots = [
-  {
-    id: "modmaster",
-    name: "ModMaster",
-    short: "Powerful moderation and logging.",
-    description:
-      "Automated moderation, warn/kick/ban workflow, configurable automod and advanced case logs.",
-    prefix: "m!",
-    tags: ["Moderation", "Logging", "AutoMod"],
-    invite: "https://discord.com/oauth2/authorize?client_id=BOT_ID&scope=bot",
-    logo: "https://via.placeholder.com/128?text=MM",
-    guilds: 12_345,
-    featured: true,
-  },
-  {
-    id: "musicflow",
-    name: "MusicFlow",
-    short: "High-quality music playback.",
-    description:
-      "Sync-free music with playlists, 24/7 voice support, crossfade and Spotify/YouTube support.",
-    prefix: "!",
-    tags: ["Music", "24/7"],
-    invite: "https://discord.com/oauth2/authorize?client_id=BOT_ID2&scope=bot",
-    logo: "https://via.placeholder.com/128?text=MF",
-    guilds: 54_321,
-    featured: false,
-  },
-  {
-    id: "gamesquad",
-    name: "GameSquad",
-    short: "Fun games & XP systems.",
-    description: "Mini-games, levelling, leaderboards, and fun events to boost activity.",
-    prefix: ".",
-    tags: ["Fun", "Economy", "Games"],
-    invite: "https://discord.com/oauth2/authorize?client_id=BOT_ID3&scope=bot",
-    logo: "https://via.placeholder.com/128?text=GS",
-    guilds: 9_876,
-    featured: false,
-  },
-];
-
 function useFilteredBots(bots, query, tagFilter, sortBy) {
   return useMemo(() => {
     let out = bots.filter((b) => {
