@@ -1,0 +1,120 @@
+<body>
+  <header class="site-header">
+    <h1>Admin Panel</h1>
+    <a class="link-back" href="index.html">← Home</a>
+  </header>
+
+  <main class="container">
+    <!-- Password Gate -->
+    <section id="loginCard" class="card">
+      <h2>Enter the Password</h2>
+      <p class="muted">This page is restricted to admins.</p>
+      <input id="adminPass" type="password" placeholder="Enter password" />
+      <div class="form-actions">
+        <button id="loginBtn" class="btn">Login</button>
+      </div>
+      <p id="errorMsg" class="muted small" style="color:#dc2626;display:none;">Incorrect password.</p>
+    </section>
+
+    <!-- Hidden Admin Section -->
+    <section id="adminSection" class="card" style="display:none;">
+      <h2>Manage Tickets</h2>
+      <div id="adminList" class="admin-list"></div>
+      <div class="actions-row">
+        <button id="clearBtn" class="btn ghost">Clear all tickets</button>
+        <a class="btn" href=index.html">Homepage</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+  <script>
+    const ADMIN_PASSWORD = "secret1231!"; // 🔒 change this to whatever you want
+
+    const loginCard = document.getElementById('loginCard');
+    const adminSection = document.getElementById('adminSection');
+    const errorMsg = document.getElementById('errorMsg');
+    const input = document.getElementById('adminPass');
+    const loginBtn = document.getElementById('loginBtn');
+
+    loginBtn.addEventListener('click', checkLogin);
+    input.addEventListener('keypress', e => { if (e.key === 'Enter') checkLogin(); });
+
+    function checkLogin() {
+      if (input.value === ADMIN_PASSWORD) {
+        localStorage.setItem('admin_logged_in', '1');
+        showAdminPanel();
+      } else {
+        errorMsg.style.display = 'block';
+        input.value = '';
+      }
+    }
+
+    // if already logged in previously
+    if (localStorage.getItem('admin_logged_in') === '1') {
+      showAdminPanel();
+    }
+
+    function showAdminPanel() {
+      loginCard.style.display = 'none';
+      adminSection.style.display = 'block';
+      renderAdmin();
+    }
+
+    // Admin logic
+    const adminList = document.getElementById('adminList');
+    function renderAdmin() {
+      const list = getTickets().sort((a,b)=> new Date(b.createdAt)-new Date(a.createdAt));
+      if (!list.length) {
+        adminList.innerHTML = '<p class="muted">No tickets.</p>';
+        return;
+      }
+
+      adminList.innerHTML = '';
+      list.forEach(t => {
+        const el = document.createElement('div');
+        el.className = 'admin-row';
+        el.innerHTML = `
+          <div class="admin-left">
+            <strong>${escapeHtml(t.title)}</strong>
+            <div class="muted small">#${t.id} • ${new Date(t.createdAt).toLocaleString()}</div>
+            <div class="small">Contact: ${escapeHtml(t.contact||'—')}</div>
+          </div>
+          <div class="admin-right">
+            <select class="status-select">
+              <option value="open">open</option>
+              <option value="in-progress">in-progress</option>
+              <option value="resolved">resolved</option>
+              <option value="closed">closed</option>
+            </select>
+            <button class="btn small delete">Delete</button>
+            <a class="btn small" href="ticket.html?id=${encodeURIComponent(t.id)}">View</a>
+          </div>
+        `;
+        const select = el.querySelector('.status-select');
+        select.value = t.status;
+        select.addEventListener('change', () => {
+          t.status = select.value;
+          updateTicket(t);
+          renderAdmin();
+        });
+        el.querySelector('.delete').addEventListener('click', () => {
+          if (confirm('Delete ticket #' + t.id + '?')) {
+            deleteTicket(t.id);
+            renderAdmin();
+          }
+        });
+        adminList.appendChild(el);
+      });
+    }
+
+    document.getElementById('clearBtn').addEventListener('click', () => {
+      if (confirm('Remove ALL tickets (this cannot be undone)?')) {
+        clearTickets();
+        renderAdmin();
+      }
+    });
+
+    function escapeHtml(s){ return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+  </script>
+</body>

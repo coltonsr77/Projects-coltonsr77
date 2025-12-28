@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create a Ticket</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0d1117;
+      color: #e6edf3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    form {
+      background: #161b22;
+      padding: 20px;
+      border-radius: 10px;
+      width: 320px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    input, select, textarea, button {
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      width: 100%;
+    }
+    button {
+      background: #238636;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #2ea043;
+    }
+  </style>
+</head>
+<body>
+  <h1>Create a Support Ticket</h1>
+
+  <form id="ticketForm">
+    <input type="text" id="title" placeholder="Ticket Title" required />
+    <textarea id="description" placeholder="Describe the issue..." required></textarea>
+    <select id="priority" required>
+      <option value="" disabled selected>Priority</option>
+      <option value="Low">Low</option>
+      <option value="Medium">Medium</option>
+      <option value="High">High</option>
+    </select>
+    <input type="Discord" id="contact" placeholder="Discord Tag" required />
+    <button type="submit">Submit Ticket</button>
+  </form>
+
+  <script>
+    document.getElementById("ticketForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const title = document.getElementById("title").value;
+      const description = document.getElementById("description").value;
+      const priority = document.getElementById("priority").value;
+      const contact = document.getElementById("contact").value;
+
+      // ✅ Replace this with your actual webhook URL
+      const webhookURL = "https://discord.com/api/webhooks/1444424123492204695/gd9nEMnztOqaOm5xEs_HA1FkqVeH9EKMtkXpwcdgrVIWGI3VhFhiUVfI_yRD8wTOK46P";
+
+      const embed = {
+        title: `🎟️ New Ticket: ${title}`,
+        color: 0x5865f2, // Discord blurple
+        fields: [
+          { name: "Priority", value: priority, inline: true },
+          { name: "Contact", value: contact, inline: true },
+          { name: "Description", value: description }
+        ],
+        footer: { text: "Ticket System" },
+        timestamp: new Date().toISOString()
+      };
+
+      const payload = {
+        username: "Ticket Bot",
+        avatar_url: "https://cdn-icons-png.flaticon.com/512/5968/5968756.png",
+        embeds: [embed]
+      };
+
+      try {
+        const response = await fetch(webhookURL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        if (response.ok) {
+          alert("✅ Ticket submitted successfully!");
+          document.getElementById("ticketForm").reset();
+        } else {
+          alert("❌ Error sending ticket. Please try again.");
+        }
+      } catch (err) {
+        console.error(err);
+        alert("⚠️ Failed to send the ticket.");
+      }
+    });
+  </script>
+</body>
+</html>

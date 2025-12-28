@@ -1,0 +1,37 @@
+:root{
+  --bg:#f6f8fb; --card:#fff; --accent:#2463eb; --muted:#6b7280;
+  --danger:#ef4444;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:#0f172a;line-height:1.4}
+.container{max-width:900px;margin:26px auto;padding:0 16px}
+.site-header{background:linear-gradient(90deg,#fff 0,#f8fafc 100%);padding:18px 16px;border-bottom:1px solid #e6eefb;display:flex;align-items:center;justify-content:space-between}
+.site-header h1{margin:0;font-size:20px}
+.link-back{font-size:14px;color:var(--accent);text-decoration:none}
+.card{background:var(--card);padding:18px;border-radius:10px;box-shadow:0 6px 18px rgba(13, 38, 70, 0.04);margin-bottom:18px}
+.muted{color:var(--muted)}
+.links{list-style:none;padding:0;margin:8px 0}
+.links li{margin:8px 0}
+a{color:var(--accent);text-decoration:none}
+input,textarea,select{width:100%;padding:10px;margin-top:8px;border:1px solid #e6eefb;border-radius:8px;background:#fff}
+textarea{resize:vertical}
+.form-actions{display:flex;gap:8px;margin-top:12px}
+.btn{display:inline-block;padding:8px 12px;border-radius:8px;background:var(--accent);color:#fff;text-decoration:none;border:none;cursor:pointer}
+.btn.ghost, .btn.ghost:link{background:transparent;color:var(--accent);border:1px solid #e6eefb}
+.actions-row{margin-top:12px;display:flex;gap:8px}
+.ticket-list{list-style:none;padding:0;margin:12px 0}
+.ticket-row{display:flex;justify-content:space-between;align-items:center;padding:12px;border-bottom:1px solid #f1f5f9}
+.ticket-link{display:block;flex:1;text-decoration:none;color:inherit}
+.pill{display:inline-block;padding:4px 8px;border-radius:999px;background:#eef2ff;font-size:12px;margin-left:6px}
+.status-pill{background:#e6f4ea;color:#064e3b}
+.small{font-size:13px}
+.muted.small{color:var(--muted)}
+.meta-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.admin-row{display:flex;justify-content:space-between;align-items:center;padding:10px;border-bottom:1px solid #f1f5f9}
+.admin-left{flex:1}
+.admin-right{display:flex;gap:8px;align-items:center}
+.btn.small{padding:6px 8px;font-size:13px}
+input#filter{margin:8px 0 14px}
+.card-section{margin-top:10px}
+.link-back{font-size:14px}
