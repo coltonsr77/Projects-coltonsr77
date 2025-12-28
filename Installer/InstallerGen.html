@@ -7,3 +7,18 @@
 </select> </p>
 <button onclick="downloadFile()">Download</button>
 </html>
+
+<script>
+function downloadFile() {
+  const select = document.getElementById("fileSelect");
+  const fileURL = select.value;
+
+  // Create a temporary link
+  const link = document.createElement("a");
+  link.href = fileURL;
+  link.download = fileURL.split('/').pop(); // Extract filename
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+</script>
