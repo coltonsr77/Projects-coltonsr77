@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   message.textContent = "🚧 The Countdown. 🚧";
 
   // Set your event date & time here
-  const target = new Date("November 15, 2025 21:00:00").getTime();
+  const target = new Date("December 28, 2025 21:00:00").getTime();
 
   const timer = setInterval(() => {
     const now = new Date().getTime();
@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (distance <= 0) {
       clearInterval(timer);
-      datetime.textContent = "All website has been updated!";
+      datetime.textContent = "...";
     } else {
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 1000);
 
   // X link (replace with your username)
-  const xUsername = "SD_COLTON";
+  const xUsername = "md-tfd_project";
   xLink.href = `https://x.com/${xUsername}`;
 });
 
@@ -35,7 +35,7 @@ function checkPassword() {
   const input = document.getElementById("password").value;
   const secretSection = document.getElementById("secret-section");
 
-  const correctPassword = "FINALLYBACK"; // change this
+  const correctPassword = "BeReady"; // change this
 
   if (input === correctPassword) {
     secretSection.classList.add("show");
