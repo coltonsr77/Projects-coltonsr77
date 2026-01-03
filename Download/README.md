@@ -1,2 +1,2 @@
 # Download
-A website to allow users to download packages from https://github.com/coltonsr77/Windows-Packages
+A website to allow users to download packages from https://server.coltonsr77.net/Download/
